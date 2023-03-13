@@ -1,20 +1,6 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-     /*
-      * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-      * │Tab│ Q │ W │ E │ R │ T │       │ Y │ U │ I │ O │ P │Bsp│
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Ctl│ A │ S │ D │ F │ G │       │ H │ J │ K │ L │ ; │ ' │
-      * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
-      * │Sft│ Z │ X │ C │ V │ B │       │ N │ M │ , │ . │ / │Sft│
-      * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
-      *               ┌───┐                   ┌───┐
-      *               │GUI├───┐           ┌───┤Alt│
-      *               └───┤Bsp├───┐   ┌───┤Ent├───┘
-      *                   └───┤   │   │   ├───┘
-      *                       └───┘   └───┘
-      */
     [0] = LAYOUT_split_3x6_3(
         // Colemak DH
         KC_TAB,         KC_Q, KC_W, KC_F, KC_P, KC_B,     KC_J, KC_L,    KC_U,   KC_Y, KC_MINS,        KC_BSPC,
@@ -59,9 +45,6 @@ const uint16_t PROGMEM rbrk_combo[] = { KC_M, KC_N, COMBO_END };
 const uint16_t PROGMEM lbrc_combo[] = { KC_D, KC_V, COMBO_END };
 const uint16_t PROGMEM rbrc_combo[] = { KC_K, KC_H, COMBO_END };
 
-const uint16_t PROGMEM fkeys_combo[] = { KC_F, KC_J, COMBO_END };
-const uint16_t PROGMEM fkeys_combo_c[] = { KC_T, KC_N, COMBO_END };
-
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(aring_combo, KC_LBRC),
     COMBO(aumlaut_combo, KC_QUOT),
@@ -71,8 +54,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(lbrk_combo, RALT(KC_8)),
     COMBO(rbrk_combo, RALT(KC_9)),
     COMBO(lbrc_combo, RALT(KC_7)),
-    COMBO(rbrc_combo, RALT(KC_0)),
-    COMBO(fkeys_combo, MO(5)),
-    COMBO(fkeys_combo_c, MO(5)),
+    COMBO(rbrc_combo, RALT(KC_0))
     /* COMBO(at_combo, RALT(KC_AT)), */
 };

@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define TAPPING_TERM 150
 
-#define COMBO_COUNT 11
+#define COMBO_COUNT 9
 #define COMBO_MUST_HOLD_PER_COMBO
 
 #undef LOCKING_SUPPORT_ENABLE
