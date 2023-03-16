@@ -129,13 +129,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
         case CK_TLDE:
             if (record->event.pressed) {
-                SEND_STRING(".");
+                SEND_STRING(SS_RALT(SS_TAP(X_RBRC) SS_TAP(X_RBRC)));
             }
             return false;
 
         case CK_BKTK:
             if (record->event.pressed) {
-                SEND_STRING(",");
+                SEND_STRING(SS_RSFT(SS_TAP(X_EQL) SS_TAP(X_EQL)));
             }
             return false;
     }
