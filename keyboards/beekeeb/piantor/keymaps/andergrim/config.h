@@ -22,8 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MASTER_LEFT
 
-#define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 150
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD // https://precondition.github.io/home-row-mods#tapping-force-hold
+#define TAPPING_TERM 170
 
 #define COMBO_COUNT 9
 #define COMBO_MUST_HOLD_PER_COMBO
