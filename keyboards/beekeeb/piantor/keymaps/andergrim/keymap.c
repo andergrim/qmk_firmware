@@ -151,21 +151,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
         case MK_PAR:
             if (record->event.pressed) {
-                SEND_STRING("()" SS_TAP(X_LEFT));
+                SEND_STRING(SS_RSFT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
             }
             return false;
 
         case MK_BRK:
             if (record->event.pressed) {
-                SEND_STRING("[]" SS_TAP(X_LEFT));
+                SEND_STRING(SS_RALT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
             }
             return false;
 
         case MK_BRC:
             if (record->event.pressed) {
-                SEND_STRING("{}" SS_TAP(X_LEFT));
+                SEND_STRING(SS_RALT(SS_TAP(X_7) SS_TAP(X_0)) SS_TAP(X_LEFT));
             }
             return false;
+
 
     }
 
