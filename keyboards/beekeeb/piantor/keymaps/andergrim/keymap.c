@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LCTL(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, LCTL_T(KC_SCLN),
              KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
                                      MO(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
-    )
+    ),
 
     // Numpad
 	[4] = LAYOUT_split_3x6_3(
