@@ -1,6 +1,7 @@
 LTO_ENABLE         = yes
 COMBO_ENABLE       = yes
 CAPS_WORD_ENABLE   = yes
+SEND_STRING_ENABLE = yes
 MOUSEKEY_ENABLE    = no
 RGBLIGHT_ENABLE    = no
 OLED_ENABLE        = no

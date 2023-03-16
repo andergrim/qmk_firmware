@@ -12,6 +12,19 @@
 #define ALT__I LALT_T(KC_I)
 #define GUI__O RGUI_T(KC_O)
 
+#define CK_PIPE RALT_T(KC_NUBS)
+#define CK_BSLS RALT_T(KC_MINS)
+#define CK_ASTR LSFT_T(KC_BSLS)
+#define CK_GRTT LSFT_T(KC_NUBS)
+#define CK_AT   RALT_T(KC_2)
+#define CK_DLR  RALT_T(KC_4)
+
+enum custom_keycodes {
+    CK_TLDE = SAFE_RANGE,
+    CK_BKTK,
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     //        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -29,18 +42,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Numerics and navigation
 	[1] = LAYOUT_split_3x6_3(
-              KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,  KC_5,     KC_6,    KC_7,    KC_8,  KC_9,    KC_0,    KC_DEL,
-        LCTL(KC_ESC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,     KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_HOME, KC_PGUP,
-             KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,     KC_NO,   KC_RBRC, KC_NO, KC_NO,   KC_END,  KC_PGDN,
-                                         MO(4), KC_TRNS, KC_SPC,     KC_ENT, MO(3), KC_LGUI
+              KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,  KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,
+        LCTL(KC_ESC), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, KC_QUOT,
+             KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,     KC_PGUP, KC_PGDN, KC_HOME, KC_END,  KC_INS,  KC_DEL,
+                                         MO(4), KC_TRNS, KC_SPC,     KC_ENT, MO(3), KC_LALT
     ),
 
     // Shifted chars
 	[2] = LAYOUT_split_3x6_3(
-              KC_TAB,    KC_EXLM,   KC_AT, KC_HASH, RALT(KC_4), KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,       KC_RPRN,       KC_BSPC,
-        LCTL(KC_ESC), RALT(KC_2), KC_TRNS, KC_TRNS,    KC_TRNS,   KC_NO,     KC_GRV,  KC_EQL,  KC_NO,   KC_RBRC,       KC_BSLS,       KC_MINS,
-             KC_LSFT,    KC_NUBS,   KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_UNDS, KC_PLUS, KC_NO,   RALT(KC_NUBS), RALT(KC_MINS), KC_RSFT,
-                                                 MO(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
+              KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+        LCTL(KC_ESC),   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, CK_ASTR, KC_AMPR, CK_BKTK, KC_BSLS, KC_UNDS,
+             KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
+                                             MO(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
 
     // F-keys
@@ -87,6 +100,7 @@ combo_t key_combos[COMBO_COUNT] = {
 };
 
 
+// Handle Caps Word, continuation and stop chars
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -109,3 +123,22 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // Deactivate Caps Word.
     }
 }
+
+// Handle custom keys
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case CK_TLDE:
+            if (record->event.pressed) {
+                SEND_STRING(".");
+            }
+            return false;
+
+        case CK_BKTK:
+            if (record->event.pressed) {
+                SEND_STRING(",");
+            }
+            return false;
+    }
+
+    return true;
+};
