@@ -12,12 +12,12 @@
 #define ALT__I LALT_T(KC_I)
 #define GUI__O RGUI_T(KC_O)
 
-#define CK_PIPE RALT_T(KC_NUBS)
-#define CK_BSLS RALT_T(KC_MINS)
-#define CK_ASTR LSFT_T(KC_BSLS)
-#define CK_GRTT LSFT_T(KC_NUBS)
-#define CK_AT   RALT_T(KC_2)
-#define CK_DLR  RALT_T(KC_4)
+#define CK_PIPE RALT(KC_NUBS)
+#define CK_BSLS RALT(KC_MINS)
+#define CK_ASTR LSFT(KC_BSLS)
+#define CK_GRTT LSFT(KC_NUBS)
+#define CK_AT   RALT(KC_2)
+#define CK_DLR  RALT(KC_4)
 
 enum custom_keycodes {
     CK_TLDE = SAFE_RANGE,
