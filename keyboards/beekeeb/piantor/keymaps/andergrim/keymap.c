@@ -22,6 +22,9 @@
 enum custom_keycodes {
     CK_TLDE = SAFE_RANGE,
     CK_BKTK,
+    MK_PAR,
+    MK_BRK,
+    MK_BRC,
 };
 
 
@@ -87,6 +90,10 @@ const uint16_t PROGMEM rbrk_combo[] = { KC_M, CTL__N, COMBO_END };
 const uint16_t PROGMEM lbrc_combo[] = { KC_D, KC_V, COMBO_END };
 const uint16_t PROGMEM rbrc_combo[] = { KC_K, KC_H, COMBO_END };
 
+const uint16_t PROGMEM mk_par_combo[] = { KC_B, KC_J, COMBO_END };
+const uint16_t PROGMEM mk_bkt_combo[] = { KC_G, KC_M, COMBO_END };
+const uint16_t PROGMEM mk_brc_combo[] = { KC_V, KV_K, COMBO_END };
+
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(aring_combo, KC_LBRC),
     COMBO(aumlaut_combo, KC_QUOT),
@@ -97,6 +104,9 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(rbrk_combo, RALT(KC_9)),
     COMBO(lbrc_combo, RALT(KC_7)),
     COMBO(rbrc_combo, RALT(KC_0))
+    COMBO(mk_par_combo, MK_PAR),
+    COMBO(mk_brk_combo, MK_BRK),
+    COMBO(mk_brc_combo, MK_BRC),
 };
 
 
@@ -138,6 +148,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 SEND_STRING(SS_RSFT(SS_TAP(X_EQL) SS_TAP(X_EQL)));
             }
             return false;
+
+        case MK_PAR:
+            if (record->event.pressed) {
+                SEND_STRING("()" SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRK:
+            if (record->event.pressed) {
+                SEND_STRING("[]" SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRC:
+            if (record->event.pressed) {
+                SEND_STRING("{}" SS_TAP(X_LEFT));
+            }
+            return false;
+
     }
 
     return true;
