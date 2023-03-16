@@ -103,7 +103,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(lbrk_combo, RALT(KC_8)),
     COMBO(rbrk_combo, RALT(KC_9)),
     COMBO(lbrc_combo, RALT(KC_7)),
-    COMBO(rbrc_combo, RALT(KC_0))
+    COMBO(rbrc_combo, RALT(KC_0)),
     COMBO(mk_par_combo, MK_PAR),
     COMBO(mk_brk_combo, MK_BRK),
     COMBO(mk_brc_combo, MK_BRC),
