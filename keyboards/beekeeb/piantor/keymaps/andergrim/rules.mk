@@ -1,8 +1,9 @@
-MOUSEKEY_ENABLE = no
-RGBLIGHT_ENABLE = no
-OLED_ENABLE     = no
-LTO_ENABLE      = yes
-COMBO_ENABLE    = yes
-MUSIC_ENABLE    = no
+LTO_ENABLE         = yes
+COMBO_ENABLE       = yes
+CAPS_WORD_ENABLE   = yes
+MOUSEKEY_ENABLE    = no
+RGBLIGHT_ENABLE    = no
+OLED_ENABLE        = no
+MUSIC_ENABLE       = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE   = no

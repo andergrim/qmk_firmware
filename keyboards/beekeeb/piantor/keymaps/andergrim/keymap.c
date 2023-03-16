@@ -37,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Shifted chars
 	[2] = LAYOUT_split_3x6_3(
-              KC_TAB,    KC_EXLM, KC_AT, KC_HASH, RALT(KC_4), KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,       KC_RPRN,       KC_BSPC,
-        LCTL(KC_ESC), RALT(KC_2), KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_NO,   KC_RBRC,       KC_BSLS,       KC_MINS,
-             KC_LSFT,    KC_NUBS, KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_UNDS, KC_PLUS, KC_NO,   RALT(KC_NUBS), RALT(KC_MINS), KC_RSFT,
+              KC_TAB,    KC_EXLM,   KC_AT, KC_HASH, RALT(KC_4), KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,       KC_RPRN,       KC_BSPC,
+        LCTL(KC_ESC), RALT(KC_2), KC_TRNS, KC_TRNS,    KC_TRNS,   KC_NO,     KC_GRV,  KC_EQL,  KC_NO,   KC_RBRC,       KC_BSLS,       KC_MINS,
+             KC_LSFT,    KC_NUBS,   KC_NO,   KC_NO,      KC_NO,   KC_NO,     KC_UNDS, KC_PLUS, KC_NO,   RALT(KC_NUBS), RALT(KC_MINS), KC_RSFT,
                                                  MO(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
 
@@ -85,3 +85,27 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(lbrc_combo, RALT(KC_7)),
     COMBO(rbrc_combo, RALT(KC_0))
 };
+
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+        case KC_SLSH:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
