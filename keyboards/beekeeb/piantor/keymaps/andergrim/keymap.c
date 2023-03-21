@@ -25,6 +25,7 @@ enum custom_keycodes {
     MK_PAR,
     MK_BRK,
     MK_BRC,
+    MK_QUOT,
 };
 
 
@@ -54,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Shifted chars
 	[2] = LAYOUT_split_3x6_3(
               KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-        LCTL(KC_ESC),   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, CK_ASTR, KC_AMPR, CK_BKTK, KC_BSLS, KC_UNDS,
+        LCTL(KC_ESC),   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, CK_ASTR, KC_AMPR, KC_BSLS, CK_BKTK, KC_UNDS,
              KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
                                              MO(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
@@ -93,6 +94,8 @@ const uint16_t PROGMEM rbrc_combo[] = { KC_K, KC_H, COMBO_END };
 const uint16_t PROGMEM mk_par_combo[] = { KC_B, KC_J, COMBO_END };
 const uint16_t PROGMEM mk_brk_combo[] = { KC_G, KC_M, COMBO_END };
 const uint16_t PROGMEM mk_brc_combo[] = { KC_V, KC_K, COMBO_END };
+const uint16_t PROGMEM mk_quot_combo[] = { KC_EXLM, KC_AT, COMBO_END };
+
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(aring_combo, KC_LBRC),
@@ -107,6 +110,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(mk_par_combo, MK_PAR),
     COMBO(mk_brk_combo, MK_BRK),
     COMBO(mk_brc_combo, MK_BRC),
+    COMBO(mk_quot_combo, MK_QUOT)
 };
 
 
@@ -167,6 +171,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             }
             return false;
 
+        case MK_QUOT:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_EXLM) SS_TAP(X_EXLM) SS_TAP(X_LEFT));
+            }
+            return false;
 
     }
 
