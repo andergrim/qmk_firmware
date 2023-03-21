@@ -94,7 +94,7 @@ const uint16_t PROGMEM rbrc_combo[] = { KC_K, KC_H, COMBO_END };
 const uint16_t PROGMEM mk_par_combo[] = { KC_B, KC_J, COMBO_END };
 const uint16_t PROGMEM mk_brk_combo[] = { KC_G, KC_M, COMBO_END };
 const uint16_t PROGMEM mk_brc_combo[] = { KC_V, KC_K, COMBO_END };
-const uint16_t PROGMEM mk_quot_combo[] = { KC_AT, KC_TRNS, COMBO_END };
+const uint16_t PROGMEM mk_quot_combo[] = { KC_AT, KC_HASH, COMBO_END };
 
 
 combo_t key_combos[COMBO_COUNT] = {
