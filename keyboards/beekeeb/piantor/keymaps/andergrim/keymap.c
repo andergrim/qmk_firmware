@@ -13,7 +13,6 @@
 #define GUI__O RGUI_T(KC_O)
 
 #define LCTL_ESC LCTL_T(KC_ESC)
-#define RCTL_VIM RCTL_T(MK_VIM)
 
 #define CK_PIPE RALT(KC_NUBS)
 #define CK_BSLS RALT(KC_MINS)
@@ -43,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Colemak DH
     [0] = LAYOUT_split_3x6_3(
                 KC_TAB,   KC_Q,   KC_W,   KC_F,   KC_P, KC_B,     KC_J, KC_L,   KC_U,    KC_Y,   KC_MINS, KC_BSPC,
-              LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  RCTL_VIM,
+              LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  MK_VIM,
                KC_LSFT,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
                                         TT(4), MO(1), KC_SPC,     KC_ENT, MO(2), KC_LALT
     ),
@@ -67,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // F-keys
 	[3] = LAYOUT_split_3x6_3(
                KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5, KC_F6,     KC_F7, KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
-            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, RCTL_VIM,
+            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, MK_VIM,
              KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
                                      TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
@@ -183,7 +182,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
         case MK_VIM:
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_ESCAPE) ":");
+                SEND_STRING(SS_TAP(X_ESC) SS_LSFT(SS_TAP(X_DOT)));
             }
             return false;
 
