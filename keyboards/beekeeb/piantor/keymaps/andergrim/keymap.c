@@ -185,7 +185,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
         case MK_VIM:
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_ESC) SS_RSFT(SS_TAP(X_DOT)));
+                SEND_STRING(SS_TAP(X_ESC) SS_DELAY(150) SS_TAP(X_DOT));
             }
             return false;
 
