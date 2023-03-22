@@ -26,6 +26,7 @@ enum custom_keycodes {
     MK_BRK,
     MK_BRC,
     MK_QUOT,
+    MK_VIM,
 };
 
 
@@ -39,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Colemak DH
     [0] = LAYOUT_split_3x6_3(
                 KC_TAB,   KC_Q,   KC_W,   KC_F,   KC_P, KC_B,     KC_J, KC_L,   KC_U,    KC_Y,   KC_MINS, KC_BSPC,
-        LCTL_T(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  LCTL_T(KC_SCLN),
+        LCTL_T(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  LCTL_T(MK_VIM),
                KC_LSFT,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
                                         TT(4), MO(1), KC_SPC,     KC_ENT, MO(2), KC_LALT
     ),
@@ -63,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // F-keys
 	[3] = LAYOUT_split_3x6_3(
                KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5, KC_F6,     KC_F7, KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
-        LCTL(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, LCTL_T(KC_SCLN),
+        LCTL(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, LCTL_T(MK_VIM),
              KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
                                      TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_BSPC,
         LCTL(KC_ESC), GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, LCTL_T(KC_NUM),
              KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_P0,   KC_P1, KC_P2, KC_P3, KC_PDOT, KC_RSFT,
-                                     TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
+                                       TT(4), MO(1), KC_SPC,     MO(2), KC_TRNS, KC_LALT
     )
 };
 
@@ -179,6 +180,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         case MK_QUOT:
             if (record->event.pressed) {
                 SEND_STRING(SS_RSFT(SS_TAP(X_2) SS_TAP(X_2)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_VIM:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC) SS_RSFT(SS_TAP(X_DOT)));
             }
             return false;
 
