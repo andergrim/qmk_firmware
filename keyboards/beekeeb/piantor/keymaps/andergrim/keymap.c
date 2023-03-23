@@ -58,17 +58,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Shifted chars
 	[2] = LAYOUT_split_3x6_3(
               KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-            LCTL_ESC,   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, CK_ASTR, KC_AMPR, KC_BSLS, CK_BKTK, KC_UNDS,
+            LCTL_ESC,   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, KC_AMPR, CK_ASTR, KC_BSLS, CK_BKTK, KC_UNDS,
              KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
                                              TT(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
 
-    // F-keys
+    // F- and media keys
 	[3] = LAYOUT_split_3x6_3(
-               KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5, KC_F6,     KC_F7, KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
-            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_NO, CTL__N, SFT__E, ALT__I, GUI__O, MK_VIM,
-             KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_NO, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
-                                     TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
+               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7,   KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
+            LCTL_ESC,  GUI__A,  ALT__R,  SFT__S,  CTL__T, KC_VOLU,     KC_BRIU, CTL__N, SFT__E, ALT__I, GUI__O, KC_PSCR,
+             KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE, KC_VOLD,     KC_BRID, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
+                                           TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
 
     // Numpad
