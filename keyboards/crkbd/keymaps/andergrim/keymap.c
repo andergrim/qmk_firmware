@@ -1,66 +1,103 @@
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 
+// Left-hand home row mods
+#define GUI__A LGUI_T(KC_A)
+#define ALT__R LALT_T(KC_R)
+#define SFT__S LSFT_T(KC_S)
+#define CTL__T LCTL_T(KC_T)
+
+// Right-hand home row mods
+#define CTL__N LCTL_T(KC_N)
+#define SFT__E RSFT_T(KC_E)
+#define ALT__I LALT_T(KC_I)
+#define GUI__O RGUI_T(KC_O)
+
+#define LCTL_ESC LCTL_T(KC_ESC)
+
+#define CK_PIPE RALT(KC_NUBS)
+#define CK_BSLS RALT(KC_MINS)
+#define CK_ASTR LSFT(KC_BSLS)
+#define CK_GRTT LSFT(KC_NUBS)
+#define CK_AT   RALT(KC_2)
+#define CK_DLR  RALT(KC_4)
+
+enum custom_keycodes {
+    CK_TLDE = SAFE_RANGE,
+    CK_BKTK,
+    MK_PAR,
+    MK_BRK,
+    MK_BRC,
+    MK_QUOT,
+    MK_VIM,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[0] = LAYOUT_split_3x6_3(
-        // Qwerty
-        KC_TAB,         KC_Q, KC_W, KC_E, KC_R, KC_T,     KC_Y, KC_U, KC_I, KC_O, KC_P,           KC_BSPC,
-        LCTL_T(KC_ESC), KC_A, KC_S, KC_D, KC_F, KC_G,     KC_H, KC_J, KC_K, KC_L, KC_GT,   LCTL_T(KC_ESC),
-        KC_LSFT,        KC_Z, KC_X, KC_C, KC_V, KC_B,     KC_N, KC_M, KC_COMM, KC_DOT,   KC_SLSH, KC_RSFT,
-            KC_LGUI, MO(2), KC_SPC,                                 KC_ENT, MO(3), KC_LALT
+    //        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    // LCTL(KC_ESC), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LCTL_T(KC_SCLN),
+    //      KC_LSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_RSFT,
+    //                        KC_LGUI, KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
+
+    // Colemak DH
+    [0] = LAYOUT_split_3x6_3(
+                KC_TAB,   KC_Q,   KC_W,   KC_F,   KC_P, KC_B,     KC_J, KC_L,   KC_U,    KC_Y,   KC_MINS, KC_BSPC,
+              LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  MK_VIM,
+               KC_LSFT,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
+                                        TT(4), MO(1), KC_SPC,     KC_ENT, MO(2), KC_LALT
     ),
+
+    // Numerics and navigation
 	[1] = LAYOUT_split_3x6_3(
-        // Colemak-DH
-        KC_TAB,         KC_Q, KC_W, KC_F, KC_P, KC_B,     KC_J, KC_L,    KC_U,   KC_Y, KC_MINS,        KC_BSPC,
-        LCTL_T(KC_ESC), KC_A, KC_R, KC_S, KC_T, KC_G,     KC_M, KC_N,    KC_E,   KC_I,    KC_O, LCTL_T(KC_SCLN),
-        KC_LSFT,        KC_Z, KC_X, KC_C, KC_D, KC_V,     KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,        KC_RSFT,
-            KC_LGUI, MO(2), KC_SPC,                                 KC_ENT, MO(3), KC_LALT
+              KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,  KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,
+            LCTL_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, KC_QUOT,
+             KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,     KC_PGUP, KC_PGDN, KC_HOME, KC_END,  KC_INS,  KC_DEL,
+                                         TT(4), KC_TRNS, KC_SPC,     KC_ENT, MO(3), KC_LALT
     ),
+
+    // Shifted chars
 	[2] = LAYOUT_split_3x6_3(
-        // Numerics and navigation
-        KC_TAB,        KC_1,  KC_2,  KC_3,  KC_4,  KC_5,     KC_6,    KC_7,  KC_8,    KC_9,    KC_0,  KC_DEL,
-        LCTL(KC_ESC), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,  KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_HOME, KC_PGUP,
-        KC_LSFT,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_RBRC, KC_NO,   KC_NO,  KC_END, KC_PGDN,
-            KC_LGUI, KC_TRNS, KC_SPC,                               KC_ENT, MO(4), KC_LGUI
+              KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+            LCTL_ESC,   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, KC_AMPR, CK_ASTR, KC_BSLS, CK_BKTK, KC_UNDS,
+             KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
+                                             TT(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
+
+    // F- and media keys
 	[3] = LAYOUT_split_3x6_3(
-        // Shifted chars
-        KC_TAB, KC_EXLM, KC_AT, KC_HASH, RALT(KC_4), KC_PERC,   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-        LCTL(KC_ESC), RALT(KC_2), KC_NO, KC_NO, KC_NO, KC_NO,        KC_GRV, KC_EQL, KC_NO, KC_RBRC, KC_BSLS, KC_MINS,
-        KC_LSFT, KC_NUBS, KC_NO, KC_NO, KC_NO, KC_NO,           KC_UNDS, KC_PLUS, KC_NO, RALT(KC_NUBS), RALT(KC_MINS), KC_RSFT,
-            KC_LALT, MO(4), KC_SPC,                                 KC_ENT, KC_TRNS, KC_LALT
+               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7,   KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
+            LCTL_ESC,  GUI__A,  ALT__R,  SFT__S,  CTL__T, KC_VOLU,     KC_BRIU, CTL__N, SFT__E, ALT__I, GUI__O, KC_PSCR,
+             KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE, KC_VOLD,     KC_BRID, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
+                                           TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, KC_LALT
     ),
+
+    // Numpad
 	[4] = LAYOUT_split_3x6_3(
-        // Adjustments and media keys
-        QK_BOOT, DF(0), DF(1), KC_NO, KC_NO, KC_NO,             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_NO, KC_NO,       KC_MUTE, KC_VOLD, KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT,
-        RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_NO, KC_NO,       KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-            KC_LGUI, KC_TRNS, KC_SPC,                               KC_ENT, KC_TRNS, KC_LALT
-    ),
-	[5] = LAYOUT_split_3x6_3(
-        // F-keys
-        KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,               KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,
-        LCTL(KC_ESC), KC_NO, KC_NO, KC_NO, KC_TRNS, KC_NO,      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_LSFT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,             KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_RSFT,
-            KC_LGUI, KC_TRNS, KC_SPC,                               KC_ENT, KC_TRNS, KC_LALT
+               KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_BSPC,
+            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, LCTL_T(KC_NUM),
+             KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_P0,   KC_P1, KC_P2, KC_P3, KC_PDOT, KC_RSFT,
+                                       TT(4), MO(1), KC_SPC,     MO(2), KC_TRNS, KC_LALT
     )
 };
 
-const uint16_t PROGMEM aring_combo[] =   { KC_A, KC_O, COMBO_END };
-const uint16_t PROGMEM aumlaut_combo[] = { KC_A, KC_E, COMBO_END };
-const uint16_t PROGMEM oumlaut_combo[] = { KC_O, KC_E, COMBO_END };
+
+const uint16_t PROGMEM aring_combo[] =   { GUI__A, GUI__O, COMBO_END };
+const uint16_t PROGMEM aumlaut_combo[] = { GUI__A, SFT__E, COMBO_END };
+const uint16_t PROGMEM oumlaut_combo[] = { GUI__O, SFT__E, COMBO_END };
 
 const uint16_t PROGMEM lpar_combo[] = { KC_P, KC_B, COMBO_END };
 const uint16_t PROGMEM rpar_combo[] = { KC_J, KC_L, COMBO_END };
 
-const uint16_t PROGMEM lbrk_combo[] = { KC_T, KC_G, COMBO_END };
-const uint16_t PROGMEM rbrk_combo[] = { KC_M, KC_N, COMBO_END };
+const uint16_t PROGMEM lbrk_combo[] = { CTL__T, KC_G, COMBO_END };
+const uint16_t PROGMEM rbrk_combo[] = { KC_M, CTL__N, COMBO_END };
 
 const uint16_t PROGMEM lbrc_combo[] = { KC_D, KC_V, COMBO_END };
 const uint16_t PROGMEM rbrc_combo[] = { KC_K, KC_H, COMBO_END };
 
-const uint16_t PROGMEM fkeys_combo[] = { KC_F, KC_J, COMBO_END };
-const uint16_t PROGMEM fkeys_combo_c[] = { KC_T, KC_N, COMBO_END };
+const uint16_t PROGMEM mk_par_combo[] = { KC_B, KC_J, COMBO_END };
+const uint16_t PROGMEM mk_brk_combo[] = { KC_G, KC_M, COMBO_END };
+const uint16_t PROGMEM mk_brc_combo[] = { KC_V, KC_K, COMBO_END };
+const uint16_t PROGMEM mk_quot_combo[] = { KC_AT, KC_HASH, COMBO_END };
+
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(aring_combo, KC_LBRC),
@@ -72,23 +109,24 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(rbrk_combo, RALT(KC_9)),
     COMBO(lbrc_combo, RALT(KC_7)),
     COMBO(rbrc_combo, RALT(KC_0)),
-    COMBO(fkeys_combo, MO(5)),
-    COMBO(fkeys_combo_c, MO(5)),
-    /* COMBO(at_combo, RALT(KC_AT)), */
+    COMBO(mk_par_combo, MK_PAR),
+    COMBO(mk_brk_combo, MK_BRK),
+    COMBO(mk_brc_combo, MK_BRC),
+    COMBO(mk_quot_combo, MK_QUOT)
 };
 
+
 enum layers {
-  _DEFAULT,
   _COLEMAK,
   _RAISE,
   _LOWER,
-  _ADJUST,
-  _FKEYS
+  _MEDIA,
+  _NUMPAD
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
-        case _COLEMAK:
+        case _MEDIA:
             rgblight_sethsv(HSV_CHARTREUSE);
             break;
         case _RAISE:
@@ -97,10 +135,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _LOWER:
             rgblight_sethsv(HSV_CYAN);
             break;
-        case _ADJUST:
-            rgblight_sethsv(HSV_PINK);
-            break;
-        case _FKEYS:
+        case _NUMPAD:
             rgblight_sethsv(HSV_GOLD);
             break;
         default: // for any other layers, or the default layer
@@ -109,6 +144,84 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
   return state;
 }
+
+
+// Handle Caps Word, continuation and stop chars
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+        case KC_SLSH:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
+// Handle custom keys
+#ifndef OLED_ENABLE
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case CK_TLDE:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_RBRC) SS_TAP(X_RBRC)));
+            }
+            return false;
+
+        case CK_BKTK:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_EQL) SS_TAP(X_EQL)));
+            }
+            return false;
+
+        case MK_PAR:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRK:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRC:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_7) SS_TAP(X_0)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_QUOT:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_2) SS_TAP(X_2)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_VIM:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC) SS_LSFT(SS_TAP(X_DOT)));
+            }
+            return false;
+
+    }
+
+    return true;
+};
+#endif // OLED_ENABLE
+
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -151,7 +264,6 @@ void oled_render_layer_state(void) {
             break;
     }
 }
-
 
 char keylog_str[24] = {};
 
@@ -216,9 +328,55 @@ bool oled_task_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    set_keylog(keycode, record);
-  }
-  return true;
+    if (record->event.pressed) {
+        set_keylog(keycode, record);
+    }
+
+    switch (keycode) {
+        case CK_TLDE:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_RBRC) SS_TAP(X_RBRC)));
+            }
+            return false;
+
+        case CK_BKTK:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_EQL) SS_TAP(X_EQL)));
+            }
+            return false;
+
+        case MK_PAR:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRK:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_8) SS_TAP(X_9)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_BRC:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RALT(SS_TAP(X_7) SS_TAP(X_0)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_QUOT:
+            if (record->event.pressed) {
+                SEND_STRING(SS_RSFT(SS_TAP(X_2) SS_TAP(X_2)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_VIM:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_ESC) SS_LSFT(SS_TAP(X_DOT)));
+            }
+            return false;
+
+    }
+
+    return true;
 }
 #endif // OLED_ENABLE

@@ -20,22 +20,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-//#define USE_MATRIX_I2C
-
-/* Select hand configuration */
-
 #define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
 
-//#define TAPPING_FORCE_HOLD
-//#define TAPPING_TERM 100
-#define COMBO_COUNT 11
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD // https://precondition.github.io/home-row-mods#tapping-force-hold
+#define TAPPING_TERM 170
+#define TAPPING_TOGGLE 3
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
+#define COMBO_COUNT 13
 #define COMBO_MUST_HOLD_PER_COMBO
 
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_MUSIC_MODE
+
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
