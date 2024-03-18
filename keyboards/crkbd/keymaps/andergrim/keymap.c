@@ -97,6 +97,8 @@ const uint16_t PROGMEM mk_par_combo[] = { KC_B, KC_J, COMBO_END };
 const uint16_t PROGMEM mk_brk_combo[] = { KC_G, KC_M, COMBO_END };
 const uint16_t PROGMEM mk_brc_combo[] = { KC_V, KC_K, COMBO_END };
 const uint16_t PROGMEM mk_quot_combo[] = { KC_AT, KC_HASH, COMBO_END };
+const uint16_t PROGMEM mk_squot_combo[] = { CK_ASTR, KC_BSLS, COMBO_END };
+
 
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -113,6 +115,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(mk_brk_combo, MK_BRK),
     COMBO(mk_brc_combo, MK_BRC),
     COMBO(mk_quot_combo, MK_QUOT)
+    COMBO(mk_squot_combo, MK_SQUOT)
 };
 
 
@@ -207,6 +210,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         case MK_QUOT:
             if (record->event.pressed) {
                 SEND_STRING(SS_RSFT(SS_TAP(X_2) SS_TAP(X_2)) SS_TAP(X_LEFT));
+            }
+            return false;
+
+        case MK_SQUOT:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(KC_BSLS) SS_TAP(KC_BSLS) SS_TAP(X_LEFT));
             }
             return false;
 
