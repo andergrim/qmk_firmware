@@ -29,6 +29,7 @@ enum custom_keycodes {
     MK_BRK,
     MK_BRC,
     MK_QUOT,
+    MK_SQUOT,
     MK_VIM,
 };
 
@@ -114,7 +115,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(mk_par_combo, MK_PAR),
     COMBO(mk_brk_combo, MK_BRK),
     COMBO(mk_brc_combo, MK_BRC),
-    COMBO(mk_quot_combo, MK_QUOT)
+    COMBO(mk_quot_combo, MK_QUOT),
     COMBO(mk_squot_combo, MK_SQUOT)
 };
 
