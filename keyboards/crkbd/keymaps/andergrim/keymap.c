@@ -13,12 +13,17 @@
 #define ALT__I LALT_T(KC_I)
 #define GUI__O RGUI_T(KC_O)
 
+// Misc pecial chars
 #define CK_PIPE RALT(KC_NUBS)
 #define CK_BSLS RALT(KC_MINS)
 #define CK_ASTR LSFT(KC_BSLS)
 #define CK_GRTT LSFT(KC_NUBS)
 #define CK_AT   RALT(KC_2)
 #define CK_DLR  RALT(KC_4)
+
+// Shift key tap act as Menu/XF86Open keys
+#define SFT__APP  LSFT_T(KC_APP)
+#define SFT__EXEC RSFT_T(KC_EXEC)
 
 enum custom_keycodes {
     CK_TLDE = SAFE_RANGE,
@@ -41,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
                 KC_TAB,   KC_Q,   KC_W,   KC_F,   KC_P, KC_B,     KC_J, KC_L,   KC_U,    KC_Y,   KC_MINS, KC_BSPC,
                 KC_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  MK_VIM,
-               KC_LSFT,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
+              SFT__APP,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, SFT__EXEC,
                                         TT(4), MO(1), KC_SPC,     KC_ENT, MO(2), KC_LALT
     ),
 
