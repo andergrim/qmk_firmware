@@ -22,19 +22,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MASTER_LEFT
 
-#define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD // https://precondition.github.io/home-row-mods#tapping-force-hold
-#define TAPPING_TERM 170
+#define TAPPING_TERM 150
 #define TAPPING_TOGGLE 3
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
-#define COMBO_COUNT 13
+#define COMBO_COUNT 14
 #define COMBO_MUST_HOLD_PER_COMBO
 
+// Save some space
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
+#define NO_ACTION_ONESHOT
 #define NO_MUSIC_MODE
+#define LAYER_STATE_8BIT // Allow a maximum of 8 layers
 
 
 #ifdef RGBLIGHT_ENABLE
