@@ -43,46 +43,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 KC_TAB,   KC_Q,   KC_W,   KC_F,   KC_P, KC_B,     KC_J, KC_L,   KC_U,    KC_Y,   KC_MINS, KC_BSPC,
               LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_G,     KC_M, CTL__N, SFT__E,  ALT__I, GUI__O,  MK_VIM,
                KC_LSFT,   KC_Z,   KC_X,   KC_C,   KC_D, KC_V,     KC_K, KC_H,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
-                                        TT(4), MO(1), KC_SPC,     KC_ENT, MO(2), TT(5)
+                                        TT(5), MO(2), KC_SPC,     KC_ENT, MO(3), TT(1)
     ),
 
-    // Numerics and navigation
-	[1] = LAYOUT_split_3x6_3(
-              KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,  KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,
-            LCTL_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, KC_QUOT,
-             KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,     KC_PGUP, KC_PGDN, KC_HOME, KC_END,  KC_INS,  KC_DEL,
-                                         TT(4), KC_TRNS, KC_SPC,     KC_ENT, MO(3), TT(5)
-    ),
-
-    // Shifted chars
-	[2] = LAYOUT_split_3x6_3(
-              KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-            LCTL_ESC,   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, KC_AMPR, CK_ASTR, KC_BSLS, CK_BKTK, KC_UNDS,
-             KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
-                                             TT(4), MO(3), KC_SPC,     KC_ENT, KC_TRNS, TT(5)
-    ),
-
-    // F- and media keys
-	[3] = LAYOUT_split_3x6_3(
-               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7,   KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
-            LCTL_ESC,  GUI__A,  ALT__R,  SFT__S,  CTL__T, KC_VOLU,     KC_BRIU, CTL__N, SFT__E, ALT__I, GUI__O, KC_PSCR,
-             KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE, KC_VOLD,     KC_BRID, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
-                                           TT(4), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, TT(5)
-    ),
-
-    // Numpad
-	[4] = LAYOUT_split_3x6_3(
-               KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_BSPC,
-            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, LCTL_T(KC_NUM),
-             KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_P0,   KC_P1, KC_P2, KC_P3, KC_PDOT, KC_RSFT,
-                                       TT(4), MO(1), KC_SPC,     MO(2), KC_TRNS, TT(5)
-    ),
     // Gaming
-	[5] = LAYOUT_split_3x6_3(
+	[1] = LAYOUT_split_3x6_3(
                 KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,     KC_Y, KC_U, KC_I, KC_O,    KC_P,    KC_BSPC,
               LCTL_ESC, KC_A, KC_S, KC_D, KC_F, KC_G,     KC_H, KC_J, KC_K, KC_L,    KC_SLSH, KC_RCTL,
                KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B,     KC_B, KC_N, KC_M, KC_COMM, KC_DOT,  KC_RSFT,
-                              KC_LALT, MO(1), KC_SPC,     KC_ENT, MO(2), TT(5)
+                              KC_LALT, MO(2), KC_SPC,     KC_ENT, MO(3), TT(1)
+    ),
+
+    // Numerics and navigation
+	[2] = LAYOUT_split_3x6_3(
+              KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,  KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,
+            LCTL_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_SCLN, KC_QUOT,
+             KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,     KC_PGUP, KC_PGDN, KC_HOME, KC_END,  KC_INS,  KC_DEL,
+                                         TT(5), KC_TRNS, KC_SPC,     KC_ENT, MO(4), TT(1)
+    ),
+
+    // Shifted chars
+	[3] = LAYOUT_split_3x6_3(
+              KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  CK_DLR, KC_PERC,     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
+            LCTL_ESC,   CK_AT, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,     CK_TLDE, KC_AMPR, CK_ASTR, KC_BSLS, CK_BKTK, KC_UNDS,
+             KC_LSFT, KC_NUBS, CK_GRTT,   KC_NO,   KC_NO,   KC_NO,     KC_GRV,  KC_EQL,  KC_RBRC, CK_PIPE, CK_BSLS, KC_RSFT,
+                                             TT(5), MO(4), KC_SPC,     KC_ENT, KC_TRNS, TT(1)
+    ),
+
+    // F- and media keys
+	[4] = LAYOUT_split_3x6_3(
+               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,     KC_F7,   KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
+            LCTL_ESC,  GUI__A,  ALT__R,  SFT__S,  CTL__T, KC_VOLU,     KC_BRIU, CTL__N, SFT__E, ALT__I, GUI__O, KC_PSCR,
+             KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, KC_MUTE, KC_VOLD,     KC_BRID, KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_RSFT,
+                                           TT(5), KC_TRNS, KC_SPC,     KC_ENT, KC_TRNS, TT(1)
+    ),
+
+    // Numpad
+	[5] = LAYOUT_split_3x6_3(
+               KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_PSLS, KC_P7, KC_P8, KC_P9, KC_PMNS, KC_BSPC,
+            LCTL_ESC, GUI__A, ALT__R, SFT__S, CTL__T, KC_NO,     KC_PAST, KC_P4, KC_P5, KC_P6, KC_PPLS, LCTL_T(KC_NUM),
+             KC_LSFT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,     KC_P0,   KC_P1, KC_P2, KC_P3, KC_PDOT, KC_RSFT,
+                                       TT(5), MO(2), KC_SPC,     MO(3), KC_TRNS, TT(1)
     ),
 
 };
@@ -138,6 +139,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case _MEDIA:
             rgblight_sethsv(HSV_CHARTREUSE);
             break;
+        case _GAMING:
+            rgblight_sethsv(HSV_GOLD);
+            break;
         case _RAISE:
             rgblight_sethsv(HSV_PURPLE);
             break;
@@ -145,9 +149,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgblight_sethsv(HSV_CYAN);
             break;
         case _NUMPAD:
-            rgblight_sethsv(HSV_GOLD);
-            break;
-        case _GAMING:
             rgblight_sethsv(HSV_GOLD);
             break;
         default: // for any other layers, or the default layer
@@ -244,11 +245,11 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 #define L_COLEMAK 0
+#define L_GAMING 1
 #define L_NUMERIC 2
 #define L_SHIFTED 4
 #define L_FKEYS 8
 #define L_NUMPAD 16
-#define L_GAMING 32
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
